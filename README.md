@@ -1,7 +1,9 @@
 # RAMP starting kit on solar wind classification
 
 
-_Authors: Gautier Nguyen, Joris van den Bossche, Nicolas Aunai & Balazs Kegl_
+_Authors of this challenge: Gautier Nguyen, Joris van den Bossche, Nicolas Aunai & Balazs Kegl_
+
+#### Introduction
 
 Interplanetary Coronal Mass Ejections (ICMEs) result from magnetic instabilities occurring in the Sun atmosphere, and interact with the planetary environment and may result in intense internal activity such as strong particle acceleration, so-called geomagnetic storms and geomagnetic induced currents. These effects have serious consequences regarding space and ground technologies and understanding them is part of the so-called space weather discipline.
 
@@ -12,25 +14,15 @@ The goal of this RAMP is to detect Interplanetary Coronal Mass Ejections (ICMEs)
 
 #### Set up
 
-Open a terminal and
-
-1. install the `ramp-workflow` library (if not already done)
-  ```
-  $ pip install ramp-workflow
-  ```
-  
-2. Follow the ramp-kits instructions from the [wiki](https://github.com/paris-saclay-cds/ramp-workflow/wiki/Getting-started-with-a-ramp-kit)
+install the dependencies via `environment.yml`
 
 #### Local notebook
 
 Get started on this RAMP with the [dedicated notebook](solar_wind_starting_kit.ipynb).
 
-To test the starting-kit, run
+#### Your solution
 
-
-```
-ramp-test --quick-test
-```
+Put your algorithm in `submissions/starting_kit/estimator.py`. The function `get_estimator()` should return a sklearn pipeline.
 
 #### Help
 Go to the `ramp-workflow` [wiki](https://github.com/paris-saclay-cds/ramp-workflow/wiki) for more help on the [RAMP](https://ramp.studio) ecosystem.
@@ -49,11 +41,13 @@ Categorization](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019EA0
       - ram pressure
       - Ratio of proton and alpha number density
       - Fast magnetosonic Mach number
+Also, I added the log scale for some features (for example, the Dynamic pressure) because of their small variance.
   
-2. Compute and add rolling standard deviation for some features. Before and during the solar wind events, some parameters would have a huge fluctuation. For example, Plasma beta value and Magnetic filed intensity.
+2. Compute the **rolling mean and rolling standard deviation on different time scale** (2h, 5h, 10h, 15h, 20h) for some features. Knowing that before and during the solar wind events, some parameters would have a huge fluctuation.
 
 3. Post-processing: smooth the predicted probability.
 
-4. Choose a good classifier: `HistGradientBoostingClassifier` in sklearn. 
+4. Choose a good classifier: `HistGradientBoostingClassifier` in sklearn and tune its hyperparameters, especially `l2_regularization`, `min_samples_leaf` and `max_leaf_nodes`. 
+
 
 
