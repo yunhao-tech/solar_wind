@@ -37,7 +37,7 @@ Go to the `ramp-workflow` [wiki](https://github.com/paris-saclay-cds/ramp-workfl
 
 ---
 
-# My roadmap of this data challenge
+# My roadmap for this data challenge
 
 1. Feature engineering:
 Adding some domaine specific features, c.f. the paper [Machine Learning Approach for Solar Wind
