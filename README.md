@@ -32,9 +32,28 @@ To test the starting-kit, run
 ramp-test --quick-test
 ```
 
-
 #### Help
 Go to the `ramp-workflow` [wiki](https://github.com/paris-saclay-cds/ramp-workflow/wiki) for more help on the [RAMP](https://ramp.studio) ecosystem.
 
+---
+
+# My roadmap of this data challenge
+
+1. Feature engineering:
+Adding some domaine specific features, c.f. the paper [Machine Learning Approach for Solar Wind
+Categorization](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019EA000997): 
+      - Plasma beta value
+      - Dynamic pressure
+      - Alfvén Mach number
+      - Alfven speed
+      - ram pressure
+      - Ratio of proton and alpha number density
+      - Fast magnetosonic Mach number
+  
+2. Compute and add rolling standard deviation for some features. Before and during the solar wind events, some parameters would have a huge fluctuation. For example, Plasma beta value and Magnetic filed intensity.
+
+3. Post-processing: smooth the predicted probability.
+
+4. Choose a good classifier: `HistGradientBoostingClassifier` in sklearn. 
 
 
